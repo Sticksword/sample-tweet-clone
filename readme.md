@@ -21,7 +21,7 @@ Each request, I simply pass in the person ID instead.
 **note 1**: I decided to do bonus 2 instead of bonus 3
 SQL is as follows to generate top 5 list of most popular followers for user 1. From here we can adapt for any/all users:
 
-```
+```SQL
 SELECT TOP 5 person_id, count(*)
 FROM (
     SELECT * FROM followers WHERE person_id IN (SELECT follower_person_id FROM followers WHERE person_id = 1)
@@ -32,7 +32,7 @@ ORDER BY count(*) DESC;
 
 All users:
 
-```
+```SQL
 SELECT * FROM person INNER JOIN (
     SELECT TOP 5 person_id, count(*)
     FROM (SELECT * FROM followers WHERE person_id IN (SELECT follower_person_id FROM followers WHERE person_id = 1))
