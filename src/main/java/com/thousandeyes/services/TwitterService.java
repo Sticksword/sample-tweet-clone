@@ -1,7 +1,7 @@
 package com.thousandeyes.services;
 
+import com.thousandeyes.entities.follower.Follower;
 import com.thousandeyes.entities.follower.FollowerDAO;
-import com.thousandeyes.entities.person.Person;
 import com.thousandeyes.entities.person.PersonDAO;
 import com.thousandeyes.entities.tweet.Tweet;
 import com.thousandeyes.entities.tweet.TweetDAO;
@@ -36,11 +36,11 @@ public class TwitterService {
         ).collect(Collectors.toList());
     }
 
-    public List<Person> getFollowers(int personId) {
+    public List<Follower> getFollowers(int personId) {
         return followerDAO.getFollowers(personId); // it may seem that this extra abstraction is useless but it's for future proofing
     }
 
-    public List<Person> getFollowing(int personId) {
+    public List<Follower> getFollowing(int personId) {
         return followerDAO.getFollowing(personId); // same with this
     }
 
