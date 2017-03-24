@@ -14,4 +14,5 @@ public class SinglePageAppController {
     public String index() {
         return "index.html";
     }
+    // in the essence of time, I am opting to do bonus bullet 2 instead of 3
 }

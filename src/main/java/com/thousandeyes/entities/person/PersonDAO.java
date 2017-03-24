@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 public class PersonDAO {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    private static final String sql = "SELECT id FROM person p WHERE p.name = :name";
+    private static final String sql = "SELECT TOP 1 follower_person_id where person";
 
     @Autowired
     public PersonDAO(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
