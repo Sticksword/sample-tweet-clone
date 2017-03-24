@@ -8,15 +8,15 @@ Each request, I simply pass in the person ID instead.
   * @param String userId
   * @param String userId
 * GET /followers => gets followers for a user
- * @param String userId
+  * @param String userId
 * GET /following => gets people a user follows
- * @param String userId
+  * @param String userId
 * POST /follow => for when a user follows someone
- * @param String userId
- * @param String personToFollowId
+  * @param String userId
+  * @param String personToFollowId
 * POST /unfollow => for when a user unfollows someone
- * @param String userId
- * @param String followedPersonId
+  * @param String userId
+  * @param String followedPersonId
 
 *note 1* I decided to do bonus 2 instead of bonus 3
 SQL is as follows to generate top 5 list of most popular followers for user 1. From here we can adapt for any/all users:
