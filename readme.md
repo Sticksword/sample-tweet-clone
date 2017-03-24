@@ -5,8 +5,8 @@ Each request, I simply pass in the person ID instead.
 
 * GET / => gets homepage (not completed, see note 1 below)
 * GET /tweets => gets tweets by user and by people user follows
- * @param String userId
- * @param String userId
+  * @param String userId
+  * @param String userId
 * GET /followers => gets followers for a user
  * @param String userId
 * GET /following => gets people a user follows
