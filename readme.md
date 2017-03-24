@@ -29,15 +29,16 @@ GROUP BY person_id
 ORDER BY count(*) DESC;
 ```
 
-All users:
+All users (tentative, need to test at home):
 
 ```SQL
 SELECT * FROM person INNER JOIN (
-    SELECT TOP 5 person_id, count(*)
-    FROM (SELECT * FROM followers WHERE person_id IN (SELECT follower_person_id FROM followers WHERE person_id = 1))
-    GROUP BY person_id
-    ORDER BY count(*) DESC;
-) table_2 ON person.id = table_2.or
+    SELECT orig.person_id as original_id, orig.follower_person_id
+    FROM followers orig INNER JOIN followers followersOfFollowers
+    ON orig.follower_person_id = followersOfFollowers.person_id
+    GROUP BY orig.follower_person_id
+    ORDER BY count(*) DESC
+) as popular_followers ON person.id = popular_followers.original_id;
 ```
 
 **note 2**: I am aware I only scaffolded the unit tests and they are still bare. I am a little short on time so I opted to show you what could have been with a skeleton :p
