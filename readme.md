@@ -30,7 +30,7 @@ GROUP BY person_id
 ORDER BY count(*) DESC;
 ```
 
-All users (I am very shocked at how lengthy this query is... it's been fun though re-learning in depth SQL):
+OK had to completely rework, could not "just adapt". (I am very shocked at how lengthy this query is... it's been fun though re-learning in depth SQL):
 
 ```SQL
 SELECT * FROM person inner join
