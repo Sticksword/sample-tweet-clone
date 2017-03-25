@@ -33,37 +33,41 @@ ORDER BY count(*) DESC;
 OK had to completely rework, could not "just adapt". (I am very shocked at how lengthy this query is... it's been fun though re-learning in depth SQL):
 
 ```SQL
-SELECT * FROM person inner join
-
-(
-SELECT t1.person_id, t1.follower_person_id, t1.num_followers FROM
-
-(SELECT f.person_id, f.follower_person_id, num_followers FROM followers f
-INNER JOIN
-(
-SELECT person_id, count(*) as num_followers FROM followers
-GROUP BY person_id
-) as T
-ON f.follower_person_id = T.person_id) t1
-
-INNER JOIN
-
-(SELECT person_id, max(num_followers) as num_followers FROM
-(
-SELECT f.person_id, f.follower_person_id, num_followers FROM followers f
-INNER JOIN
-(
-SELECT person_id, count(*) as num_followers FROM followers
-GROUP BY person_id
-) as T
-ON f.follower_person_id = T.person_id
-)
-GROUP BY person_id) t2
-
-ON t1.person_id = t2.person_id AND t1.num_followers = t2.num_followers
-) t3
-
-ON person.id = t3.person_id;
+SELECT * 
+FROM   person 
+       INNER JOIN (SELECT t1.person_id, 
+                          t1.follower_person_id, 
+                          t1.num_followers 
+                   FROM   (SELECT f.person_id, 
+                                  f.follower_person_id, 
+                                  num_followers 
+                           FROM   followers f 
+                                  INNER JOIN (SELECT person_id, 
+                                                     Count(*) AS num_followers 
+                                              FROM   followers 
+                                              GROUP  BY person_id) AS T 
+                                          ON f.follower_person_id = T.person_id) 
+                          t1 
+                          INNER JOIN (SELECT person_id, 
+                                             Max(num_followers) AS num_followers 
+                                      FROM   (SELECT f.person_id, 
+                                                     f.follower_person_id, 
+                                                     num_followers 
+                                              FROM   followers f 
+                                     INNER JOIN (SELECT 
+                                     person_id, 
+                                     Count(*) AS num_followers 
+                                                 FROM 
+                                     followers 
+                                     GROUP  BY person_id) 
+                                                AS T 
+                                             ON f.follower_person_id = 
+                                                T.person_id 
+                                             ) 
+                                      GROUP  BY person_id) t2 
+                                  ON t1.person_id = t2.person_id 
+                                     AND t1.num_followers = t2.num_followers) t3 
+               ON person.id = t3.person_id; 
 ```
 
 **note 2**: I purposely chose to return the ties from the most popular followers because I wasn't sure what to do to pick one of the two.
