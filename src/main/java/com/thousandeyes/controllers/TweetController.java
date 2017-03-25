@@ -59,4 +59,10 @@ public class TweetController {
         return twitterService.unfollow(Integer.valueOf(userId), followedPersonId);
     }
 
+    @RequestMapping(value = "/listPairings", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Person> getMostPopularFollowerPairings() {
+        return twitterService.getMostPopularFollowerPairings();
+    }
+
 }

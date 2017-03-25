@@ -2,6 +2,7 @@ package com.thousandeyes.services;
 
 import com.thousandeyes.entities.follower.Follower;
 import com.thousandeyes.entities.follower.FollowerDAO;
+import com.thousandeyes.entities.person.Person;
 import com.thousandeyes.entities.person.PersonDAO;
 import com.thousandeyes.entities.tweet.Tweet;
 import com.thousandeyes.entities.tweet.TweetDAO;
@@ -50,5 +51,9 @@ public class TwitterService {
 
     public boolean unfollow(int userId, int followedPersonId) {
         return followerDAO.unfollow(userId, followedPersonId);
+    }
+
+    public List<Person> getMostPopularFollowerPairings() {
+        return personDAO.getUsersWithMostPopularFollower();
     }
 }
