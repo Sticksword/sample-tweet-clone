@@ -32,6 +32,8 @@ ORDER BY count(*) DESC;
 
 OK had to completely rework, could not "just adapt". (I am very shocked at how lengthy this query is... it's been fun though re-learning in depth SQL):
 
+DISCLAIMER: AUTOFORMATTED SO IT MIGHT LOOK UGLY.
+
 ```SQL
 SELECT * 
 FROM   person 
